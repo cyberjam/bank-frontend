@@ -9,6 +9,14 @@ Let's visualize hidden index of financial soundness!
 npx create-next-app@latest .
 ```
 
+```bash
+npx install-peerdeps --dev eslint-config-airbnb
+```
+
+```bash
+npm install --save-dev eslint-plugin-prettier eslint-config-prettier
+```
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
