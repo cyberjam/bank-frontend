@@ -27,9 +27,14 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# env files
+.env*
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+realjamdev_gcp_key.json
