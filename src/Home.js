@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import BankInfo from "./BankInfo";
 
 function Home() {
   const [bankInfos, setBankInfos] = useState();
@@ -34,19 +35,7 @@ function Home() {
         </button>
       </form>
 
-      {targetBankInfo ? (
-        <div>
-          <div>{targetBankInfo["행정구역"]}</div>
-          <div>{targetBankInfo["지점명"]}</div>
-          <div>{targetBankInfo["위험가중자산대비 자기자본비율"]}</div>
-          <div>{targetBankInfo["순고정이하 여신비율"]}</div>
-          <div>{targetBankInfo["유동성 비율"]}</div>
-          <div>{targetBankInfo["총자산 순이익률"]}</div>
-          <div>{targetBankInfo["경영실태 평가"]}</div>
-        </div>
-      ) : (
-        <></>
-      )}
+      {targetBankInfo ? <BankInfo bankInfo={targetBankInfo}></BankInfo> : <></>}
     </div>
   );
 }
