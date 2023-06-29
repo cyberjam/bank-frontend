@@ -1,4 +1,5 @@
 import React from "react";
+import GaugeNeedle from "./GaugeNeedle";
 
 function BankInfo({ bankInfo }) {
   return (
@@ -13,6 +14,7 @@ function BankInfo({ bankInfo }) {
       <div>유동성 비율 : {bankInfo["유동성 비율"]}</div>
       <div>총자산 순이익률 : {bankInfo["총자산 순이익률"]}</div>
       <div>경영실태 평가 : {bankInfo["경영실태 평가"]}</div>
+      <GaugeNeedle />
     </div>
   );
 }
