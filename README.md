@@ -8,3 +8,7 @@ Let's visualize hidden index of financial soundness!
 ```bash
 npx create-react-app .
 ```
+
+```bash
+npm install react-chartjs-2 chart.js
+```
