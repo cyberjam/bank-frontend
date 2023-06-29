@@ -5,19 +5,21 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function GaugeNeedle() {
+function GaugeNeedle({
+  indicatorName,
+  indicator,
+  indicatorUnit,
+  gaugeLabelColorOrder,
+  gaugeLabelData,
+}) {
   const data = {
     labels: ["Red", "Yellow", "Green"],
     datasets: [
       {
         label: "# of Votes",
-        data: [18, 12, 6],
-        backgroundColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-        ],
-        needleValue: 12,
+        data: gaugeLabelData,
+        backgroundColor: gaugeLabelColorOrder,
+        needleValue: indicator,
         borderColor: "white",
         borderWidth: 2,
         cutout: "95%",
@@ -80,7 +82,8 @@ function GaugeNeedle() {
 
       ctx.font = "60px Helvetica";
       ctx.fillStyle = "#444";
-      ctx.fillText(needleValue + "%", cx, cy + 100);
+      ctx.fillText(needleValue + indicatorUnit, cx, cy + 100);
+      ctx.fillText(indicatorName, cx, cy + 200);
       ctx.textAlign = "center";
       ctx.restore();
     },

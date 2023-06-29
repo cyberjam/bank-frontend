@@ -2,19 +2,51 @@ import React from "react";
 import GaugeNeedle from "./GaugeNeedle";
 
 function BankInfo({ bankInfo }) {
+  const gaugeColor = {
+    RED: "rgba(255, 99, 132, 1)",
+    YELLOW: "rgba(255, 206, 86, 1)",
+    GREEN: "rgba(75, 192, 192, 1)",
+  };
+
+  const gaugeLabelColorOrder = Object.values(gaugeColor);
   return (
     <div>
-      <div>행정구역 : {bankInfo["행정구역"]}</div>
-      <div>지점명 : {bankInfo["지점명"]}</div>
-      <div>
-        위험가중자산대비 자기자본비율 :{" "}
-        {bankInfo["위험가중자산대비 자기자본비율"]}
-      </div>
-      <div>순고정이하 여신비율 : {bankInfo["순고정이하 여신비율"]}</div>
-      <div>유동성 비율 : {bankInfo["유동성 비율"]}</div>
-      <div>총자산 순이익률 : {bankInfo["총자산 순이익률"]}</div>
-      <div>경영실태 평가 : {bankInfo["경영실태 평가"]}</div>
-      <GaugeNeedle />
+      <div>{bankInfo["행정구역"]} 소재, 2022년 12월 기준</div>
+      <GaugeNeedle
+        indicatorName={"위험가중자산대비 자기자본비율"}
+        indicator={bankInfo["위험가중자산대비 자기자본비율"]}
+        indicatorUnit={"%"}
+        gaugeLabelColorOrder={gaugeLabelColorOrder}
+        gaugeLabelData={[4, 4, 8]}
+      ></GaugeNeedle>
+      <GaugeNeedle
+        indicatorName={"순고정이하 여신비율"}
+        indicator={bankInfo["순고정이하 여신비율"]}
+        indicatorUnit={"%"}
+        gaugeLabelColorOrder={[...gaugeLabelColorOrder].reverse()}
+        gaugeLabelData={[8, 4, 4]}
+      ></GaugeNeedle>
+      <GaugeNeedle
+        indicatorName={"유동성 비율"}
+        indicator={bankInfo["유동성 비율"]}
+        indicatorUnit={"%"}
+        gaugeLabelColorOrder={gaugeLabelColorOrder}
+        gaugeLabelData={[25, 25, 50]}
+      ></GaugeNeedle>
+      <GaugeNeedle
+        indicatorName={"총자산 순이익률"}
+        indicator={bankInfo["총자산 순이익률"]}
+        indicatorUnit={"%"}
+        gaugeLabelColorOrder={gaugeLabelColorOrder}
+        gaugeLabelData={[0.5, 0.5, 1]}
+      ></GaugeNeedle>
+      <GaugeNeedle
+        indicatorName={"경영실태 평가"}
+        indicator={bankInfo["경영실태 평가"]}
+        indicatorUnit={"등급"}
+        gaugeLabelColorOrder={[...gaugeLabelColorOrder].reverse()}
+        gaugeLabelData={[2.5, 1.25, 1.25]}
+      ></GaugeNeedle>
     </div>
   );
 }
