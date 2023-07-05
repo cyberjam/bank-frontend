@@ -84,7 +84,7 @@ function GaugeNeedle({
       ctx.fillText(
         `${indicatorName} : ${needleValue}${indicatorUnit}`,
         cx,
-        cy + 100
+        cy + 50
       );
       // ctx.fillText(indicatorName, cx, cy + 200);
       ctx.textAlign = "center";
