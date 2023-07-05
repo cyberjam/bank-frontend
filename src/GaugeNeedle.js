@@ -79,10 +79,14 @@ function GaugeNeedle({
       ctx.fill();
       ctx.restore();
 
-      ctx.font = "60px Helvetica";
+      ctx.font = "20px Helvetica";
       ctx.fillStyle = "#444";
-      ctx.fillText(needleValue + indicatorUnit, cx, cy + 100);
-      ctx.fillText(indicatorName, cx, cy + 200);
+      ctx.fillText(
+        `${indicatorName} : ${needleValue}${indicatorUnit}`,
+        cx,
+        cy + 100
+      );
+      // ctx.fillText(indicatorName, cx, cy + 200);
       ctx.textAlign = "center";
       ctx.restore();
       chart.update();
