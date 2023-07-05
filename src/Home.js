@@ -28,12 +28,14 @@ function Home() {
   }, []);
   return (
     <div>
-      <form>
-        <input onChange={handleTargetBank}></input>
-        <button type="submit" onClick={onSearch}>
-          검색
-        </button>
-      </form>
+      {bankInfos && (
+        <form>
+          <input onChange={handleTargetBank}></input>
+          <button type="submit" onClick={onSearch}>
+            검색
+          </button>
+        </form>
+      )}
 
       {targetBankInfo ? <BankInfo bankInfo={targetBankInfo}></BankInfo> : <></>}
     </div>
