@@ -16,3 +16,7 @@ npm install react-chartjs-2 chart.js
 ```bash
 npm install --save-dev gh-pages
 ```
+
+```bash
+npm install styled-components
+```
