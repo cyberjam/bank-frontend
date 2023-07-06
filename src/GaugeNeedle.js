@@ -56,7 +56,9 @@ function GaugeNeedle({
       const needleValue = bankInfo[indicatorName];
 
       const dataTotal = gaugeLabelData.reduce((a, b) => a + b, 0);
-      const angle = Math.PI + (1 / dataTotal) * needleValue * Math.PI;
+      const angleOrigin = Math.PI + (1 / dataTotal) * needleValue * Math.PI;
+      const angleMax = Math.PI + (1 / dataTotal) * dataTotal * Math.PI;
+      const angle = angleOrigin > angleMax ? angleMax : angleOrigin;
       const cx = width / 2;
       const cy = chart._metasets[0].data[0].y;
 
