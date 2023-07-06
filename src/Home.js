@@ -43,9 +43,15 @@ function Home() {
     if (searching && search) {
       setSearching(false);
       setSearchData(
-        bankInfos.filter((bankInfo) =>
-          bankInfo["지점명"].match(createFuzzyMatcher(search))
-        )
+        bankInfos
+          .filter((bankInfo) =>
+            bankInfo["지점명"].match(createFuzzyMatcher(search))
+          )
+          .concat(
+            bankInfos.filter((bankInfo) =>
+              bankInfo["행정구역"].match(createFuzzyMatcher(search))
+            )
+          )
       );
     }
     if (searching && !search) {
@@ -69,7 +75,9 @@ function Home() {
         </button>
       </form>
       {searchedData.map((item) => (
-        <ul>{item["행정구역"]} {item["지점명"]}</ul>
+        <ul>
+          {item["행정구역"]} {item["지점명"]}
+        </ul>
       ))}
       {targetBankInfo ? <BankInfo bankInfo={targetBankInfo}></BankInfo> : <></>}
     </div>
