@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BankInfo from "./BankInfo";
+import { createFuzzyMatcher } from "./utils/fuzzyMatcher";
 
 function Home() {
   const [bankInfos, setBankInfos] = useState();
@@ -7,7 +8,9 @@ function Home() {
   const [targetBankInfo, setTargetBankInfo] = useState();
   const [inputState, setInputState] = useState(false);
 
-  const handleTargetBank = ({ target: { value } }) => setTargetBank(value);
+  const [search, setSearch] = useState("");
+  const [searching, setSearching] = useState(true);
+  const [searchedData, setSearchData] = useState([]);
 
   const getData = async () => {
     const response = await fetch(
@@ -17,7 +20,8 @@ function Home() {
     setBankInfos(data);
     setInputState(true);
   };
-  const onSearch = (event) => {
+
+  const handleSearch = (event) => {
     event.preventDefault();
     const target = bankInfos.filter(
       (bankInfo) => bankInfo["지점명"] === targetBank
@@ -25,24 +29,48 @@ function Home() {
     setTargetBankInfo(target);
   };
 
+  const handleInputBank = ({ target: { value } }) => {
+    setSearching(true);
+    setTargetBank(value);
+    setSearch(value);
+  };
+
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    if (searching && search) {
+      setSearching(false);
+      setSearchData(
+        bankInfos.filter((bankInfo) =>
+          bankInfo["지점명"].match(createFuzzyMatcher(search))
+        )
+      );
+    }
+    if (searching && !search) {
+      setSearchData([]);
+    }
+  }, [search]);
+
   return (
     <div>
       <form>
         {setInputState && (
           <input
-            onChange={handleTargetBank}
+            value={search}
+            onChange={handleInputBank}
             disabled={inputState ? "" : "disabled"}
             placeholder={inputState ? "" : "실시간 데이터 로딩중"}
           ></input>
         )}
-        <button type="submit" onClick={onSearch}>
+        <button type="submit" onClick={handleSearch}>
           검색
         </button>
       </form>
-
+      {searchedData.map((item) => (
+        <ul>{item["지점명"]}</ul>
+      ))}
       {targetBankInfo ? <BankInfo bankInfo={targetBankInfo}></BankInfo> : <></>}
     </div>
   );
