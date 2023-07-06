@@ -7,8 +7,6 @@ function Home() {
   const [targetBankInfo, setTargetBankInfo] = useState();
   const [inputState, setInputState] = useState(false);
 
-  const handleTargetBank = ({ target: { value } }) => setTargetBank(value);
-
   const getData = async () => {
     const response = await fetch(
       "https://script.google.com/macros/s/AKfycbxfKYenkGNxchOPPRYeq50C42GBpa6WjRWDiuZDbwEfUm6QlKZkpPnmVVqhrKyxLgc7/exec"
@@ -17,7 +15,10 @@ function Home() {
     setBankInfos(data);
     setInputState(true);
   };
-  const onSearch = (event) => {
+
+  const handleTargetBank = ({ target: { value } }) => setTargetBank(value);
+
+  const handleSearch = (event) => {
     event.preventDefault();
     const target = bankInfos.filter(
       (bankInfo) => bankInfo["지점명"] === targetBank
@@ -38,7 +39,7 @@ function Home() {
             placeholder={inputState ? "" : "실시간 데이터 로딩중"}
           ></input>
         )}
-        <button type="submit" onClick={onSearch}>
+        <button type="submit" onClick={handleSearch}>
           검색
         </button>
       </form>
