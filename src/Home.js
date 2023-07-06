@@ -69,7 +69,7 @@ function Home() {
         </button>
       </form>
       {searchedData.map((item) => (
-        <ul>{item["지점명"]}</ul>
+        <ul>{item["행정구역"]} {item["지점명"]}</ul>
       ))}
       {targetBankInfo ? <BankInfo bankInfo={targetBankInfo}></BankInfo> : <></>}
     </div>
