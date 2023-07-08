@@ -25,12 +25,11 @@ function Home() {
     setTargetBank(value);
   };
 
-  const fetchBankInfos = async () => {
-    const data = await fetchBankData();
-    setBankInfos(data);
-  };
-
   useEffect(() => {
+    const fetchBankInfos = async () => {
+      const data = await fetchBankData();
+      setBankInfos(data);
+    };
     fetchBankInfos();
   }, []);
 
