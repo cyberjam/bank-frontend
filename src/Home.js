@@ -35,7 +35,7 @@ function Home() {
           <input
             onChange={handleTargetBank}
             disabled={inputState ? "" : "disabled"}
-            placeholder={inputState ? "" : "실시간 데이터 로딩중"}
+            placeholder={inputState ? "" : "실시간 데이터 로딩중 :)"}
           ></input>
         )}
         <button type="submit" onClick={onSearch}>
