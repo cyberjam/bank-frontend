@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BankInfo from "./BankInfo";
 import fetchBankData from "./api/fetchBankData";
+import BankSearchList from "./BankSearchList";
 import { createFuzzyMatcher } from "./utils/fuzzyMatcher";
 
 function Home() {
@@ -9,16 +10,16 @@ function Home() {
   const [targetBankInfo, setTargetBankInfo] = useState();
   const [searchBankInfos, setSearchBankInfos] = useState([]);
 
-  const handleSearch = (event) => {
+  const handleInputBank = (event) => {
+    setTargetBank(event.target.value);
+  };
+
+  const handleSearchBank = (event) => {
     event.preventDefault();
     const target = bankInfos.filter(
       (bankInfo) => bankInfo["지점명"] === targetBank
     )[0];
     setTargetBankInfo(target);
-  };
-
-  const handleInputBank = (event) => {
-    setTargetBank(event.target.value);
   };
 
   const handleSelectBank = (value) => {
@@ -46,7 +47,7 @@ function Home() {
 
   return (
     <div>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearchBank}>
         <input
           value={targetBank}
           onChange={handleInputBank}
@@ -57,21 +58,14 @@ function Home() {
         <button type="submit">검색</button>
       </form>
       {targetBankInfo ? (
-        <></>
+        <BankInfo bankInfo={targetBankInfo}></BankInfo>
       ) : (
-        searchBankInfos.map((item, index) => (
-          <ul
-            key={index}
-            onClick={(event) => {
-              handleSelectBank(item["지점명"]);
-              handleSearch(event);
-            }}
-          >
-            [{item["행정구역"]}] {item["지점명"]} 새마을금고
-          </ul>
-        ))
+        <BankSearchList
+          searchBankInfos={searchBankInfos}
+          handleSelectBank={handleSelectBank}
+          handleSearchBank={handleSearchBank}
+        ></BankSearchList>
       )}
-      {targetBankInfo ? <BankInfo bankInfo={targetBankInfo}></BankInfo> : <></>}
     </div>
   );
 }
