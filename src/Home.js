@@ -3,8 +3,8 @@ import BankInfo from "./BankInfo";
 import { createFuzzyMatcher } from "./utils/fuzzyMatcher";
 
 function Home() {
-  const [bankInfos, setBankInfos] = useState();
-  const [targetBank, setTargetBank] = useState();
+  const [bankInfos, setBankInfos] = useState([]);
+  const [targetBank, setTargetBank] = useState("");
   const [targetBankInfo, setTargetBankInfo] = useState();
   const [searchBankInfos, setSearchBankInfos] = useState([]);
 
@@ -53,8 +53,8 @@ function Home() {
         <input
           value={targetBank}
           onChange={handleInputBank}
-          disabled={bankInfos ? "" : "disabled"}
-          placeholder={bankInfos ? "" : "실시간 데이터 로딩중 :)"}
+          disabled={bankInfos.length ? "" : "disabled"}
+          placeholder={bankInfos.length ? "" : "실시간 데이터 로딩중 :)"}
         ></input>
 
         <button type="submit" onClick={handleSearch}>
