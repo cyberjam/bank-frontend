@@ -24,8 +24,8 @@ function Home() {
     setTargetBankInfo(target);
   };
 
-  const handleInputBank = ({ target: { value } }) => {
-    setTargetBank(value);
+  const handleInputBank = (event) => {
+    setTargetBank(event.target.value);
   };
 
   const handleList = (value) => {
