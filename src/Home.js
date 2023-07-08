@@ -6,9 +6,7 @@ function Home() {
   const [bankInfos, setBankInfos] = useState();
   const [targetBank, setTargetBank] = useState();
   const [targetBankInfo, setTargetBankInfo] = useState();
-
-  const [searching, setSearching] = useState(true);
-  const [searchedData, setSearchData] = useState([]);
+  const [searchBankInfos, setSearchBankInfos] = useState([]);
 
   const getData = async () => {
     const response = await fetch(
@@ -27,7 +25,6 @@ function Home() {
   };
 
   const handleInputBank = ({ target: { value } }) => {
-    setSearching(true);
     setTargetBank(value);
   };
 
@@ -40,9 +37,8 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (searching && targetBank) {
-      setSearching(false);
-      setSearchData(
+    if (bankInfos) {
+      setSearchBankInfos(
         bankInfos
           .filter((bankInfo) =>
             bankInfo["지점명"].match(createFuzzyMatcher(targetBank))
@@ -53,9 +49,6 @@ function Home() {
             )
           )
       );
-    }
-    if (searching && !targetBank) {
-      setSearchData([]);
     }
   }, [targetBank]);
 
@@ -76,7 +69,7 @@ function Home() {
       {targetBankInfo ? (
         <></>
       ) : (
-        searchedData.map((item) => (
+        searchBankInfos.map((item) => (
           <ul
             onClick={(event) => {
               handleList(item["지점명"]);
