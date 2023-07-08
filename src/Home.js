@@ -6,7 +6,6 @@ function Home() {
   const [bankInfos, setBankInfos] = useState();
   const [targetBank, setTargetBank] = useState();
   const [targetBankInfo, setTargetBankInfo] = useState();
-  const [inputState, setInputState] = useState(false);
 
   const [search, setSearch] = useState("");
   const [searching, setSearching] = useState(true);
@@ -18,7 +17,6 @@ function Home() {
     );
     const data = await response.json();
     setBankInfos(data);
-    setInputState(true);
   };
 
   const handleSearch = (event) => {
@@ -66,14 +64,13 @@ function Home() {
   return (
     <div>
       <form>
-        {setInputState && (
-          <input
-            value={search}
-            onChange={handleInputBank}
-            disabled={inputState ? "" : "disabled"}
-            placeholder={inputState ? "" : "실시간 데이터 로딩중 :)"}
-          ></input>
-        )}
+        <input
+          value={search}
+          onChange={handleInputBank}
+          disabled={bankInfos ? "" : "disabled"}
+          placeholder={bankInfos ? "" : "실시간 데이터 로딩중 :)"}
+        ></input>
+
         <button type="submit" onClick={handleSearch}>
           검색
         </button>
