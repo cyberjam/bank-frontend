@@ -39,15 +39,10 @@ function Home() {
   useEffect(() => {
     if (bankInfos) {
       setSearchBankInfos(
-        bankInfos
-          .filter((bankInfo) =>
-            bankInfo["지점명"].match(createFuzzyMatcher(targetBank))
-          )
-          .concat(
-            bankInfos.filter((bankInfo) =>
-              bankInfo["행정구역"].match(createFuzzyMatcher(targetBank))
-            )
-          )
+        bankInfos.filter((bankInfo) => {
+          const searchWord = bankInfo["지점명"] + bankInfo["행정구역"];
+          return searchWord.match(createFuzzyMatcher(targetBank));
+        })
       );
     }
   }, [targetBank]);
