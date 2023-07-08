@@ -21,7 +21,7 @@ function Home() {
     setTargetBank(event.target.value);
   };
 
-  const handleList = (value) => {
+  const handleSelectBank = (value) => {
     setTargetBank(value);
   };
 
@@ -63,7 +63,7 @@ function Home() {
           <ul
             key={index}
             onClick={(event) => {
-              handleList(item["지점명"]);
+              handleSelectBank(item["지점명"]);
               handleSearch(event);
             }}
           >
