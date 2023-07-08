@@ -174,7 +174,6 @@ function GaugeNeedle({
         chart.update();
       },
     };
-    console.log(gaugeNeedle);
   }, [bankInfo]);
 
   return (

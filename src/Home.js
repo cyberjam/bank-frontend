@@ -4,7 +4,7 @@ import { createFuzzyMatcher } from "./utils/fuzzyMatcher";
 
 function Home() {
   const [bankInfos, setBankInfos] = useState();
-  const [targetBank, setTargetBank] = useState("");
+  const [targetBank, setTargetBank] = useState();
   const [targetBankInfo, setTargetBankInfo] = useState();
   const [inputState, setInputState] = useState(false);
 
@@ -33,6 +33,10 @@ function Home() {
     setSearching(true);
     setTargetBank(value);
     setSearch(value);
+  };
+
+  const handleList = (value) => {
+    setTargetBank(value);
   };
 
   useEffect(() => {
@@ -67,18 +71,27 @@ function Home() {
             value={search}
             onChange={handleInputBank}
             disabled={inputState ? "" : "disabled"}
-            placeholder={inputState ? "" : "실시간 데이터 로딩중"}
+            placeholder={inputState ? "" : "실시간 데이터 로딩중 :)"}
           ></input>
         )}
         <button type="submit" onClick={handleSearch}>
           검색
         </button>
       </form>
-      {searchedData.map((item) => (
-        <ul>
-          {item["행정구역"]} {item["지점명"]}
-        </ul>
-      ))}
+      {targetBankInfo ? (
+        <></>
+      ) : (
+        searchedData.map((item) => (
+          <ul
+            onClick={(event) => {
+              handleList(item["지점명"]);
+              handleSearch(event);
+            }}
+          >
+            [{item["행정구역"]}] {item["지점명"]} 새마을금고
+          </ul>
+        ))
+      )}
       {targetBankInfo ? <BankInfo bankInfo={targetBankInfo}></BankInfo> : <></>}
     </div>
   );
