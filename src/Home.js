@@ -49,7 +49,7 @@ function Home() {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSearch}>
         <input
           value={targetBank}
           onChange={handleInputBank}
@@ -57,9 +57,7 @@ function Home() {
           placeholder={bankInfos.length ? "" : "실시간 데이터 로딩중 :)"}
         ></input>
 
-        <button type="submit" onClick={handleSearch}>
-          검색
-        </button>
+        <button type="submit">검색</button>
       </form>
       {targetBankInfo ? (
         <></>
