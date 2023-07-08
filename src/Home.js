@@ -64,8 +64,9 @@ function Home() {
       {targetBankInfo ? (
         <></>
       ) : (
-        searchBankInfos.map((item) => (
+        searchBankInfos.map((item, index) => (
           <ul
+            key={index}
             onClick={(event) => {
               handleList(item["지점명"]);
               handleSearch(event);
