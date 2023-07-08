@@ -7,7 +7,6 @@ function Home() {
   const [targetBank, setTargetBank] = useState();
   const [targetBankInfo, setTargetBankInfo] = useState();
 
-  const [search, setSearch] = useState("");
   const [searching, setSearching] = useState(true);
   const [searchedData, setSearchData] = useState([]);
 
@@ -30,7 +29,6 @@ function Home() {
   const handleInputBank = ({ target: { value } }) => {
     setSearching(true);
     setTargetBank(value);
-    setSearch(value);
   };
 
   const handleList = (value) => {
@@ -42,30 +40,30 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (searching && search) {
+    if (searching && targetBank) {
       setSearching(false);
       setSearchData(
         bankInfos
           .filter((bankInfo) =>
-            bankInfo["지점명"].match(createFuzzyMatcher(search))
+            bankInfo["지점명"].match(createFuzzyMatcher(targetBank))
           )
           .concat(
             bankInfos.filter((bankInfo) =>
-              bankInfo["행정구역"].match(createFuzzyMatcher(search))
+              bankInfo["행정구역"].match(createFuzzyMatcher(targetBank))
             )
           )
       );
     }
-    if (searching && !search) {
+    if (searching && !targetBank) {
       setSearchData([]);
     }
-  }, [search]);
+  }, [targetBank]);
 
   return (
     <div>
       <form>
         <input
-          value={search}
+          value={targetBank}
           onChange={handleInputBank}
           disabled={bankInfos ? "" : "disabled"}
           placeholder={bankInfos ? "" : "실시간 데이터 로딩중 :)"}
