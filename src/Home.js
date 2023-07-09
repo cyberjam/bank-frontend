@@ -23,6 +23,10 @@ function Home() {
     fetchBankInfos();
   }, []);
 
+  useEffect(() => {
+    setTargetBankInfo();
+  }, [targetBank]);
+
   return (
     <div>
       <BankInput
