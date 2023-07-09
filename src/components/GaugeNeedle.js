@@ -18,7 +18,7 @@ function GaugeNeedle({
     GREEN: "rgba(75, 192, 192, 1)",
   };
 
-  const ladels = ["경고 구간", "주의 구간", "안전 구간"];
+  const ladels = ["위험 구간", "주의 구간", "안전 구간"];
 
   const data = {
     labels: labelOrder ? ladels : ladels.reverse(),
