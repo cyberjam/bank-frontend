@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createFuzzyMatcher } from "./utils/fuzzyMatcher";
+import { createFuzzyMatcher } from "../utils/fuzzyMatcher";
 
 function BankSearchList({
   bankInfos,

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import BankInfo from "./BankInfo";
+import BankInfo from "./components/BankInfo";
 import fetchBankData from "./api/fetchBankData";
-import BankSearchList from "./BankSearchList";
+import BankSearchList from "./components/BankSearchList";
 
 function Home() {
   const [bankInfos, setBankInfos] = useState([]);
