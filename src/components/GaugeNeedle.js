@@ -9,16 +9,26 @@ function GaugeNeedle({
   indicatorName,
   targetBankInfo,
   indicatorUnit,
-  gaugeLabelColorOrder,
+  labelOrder,
   gaugeLabelData,
 }) {
+  const gaugeColor = {
+    RED: "rgba(255, 99, 132, 1)",
+    YELLOW: "rgba(255, 206, 86, 1)",
+    GREEN: "rgba(75, 192, 192, 1)",
+  };
+
+  const ladels = ["경고 구간", "주의 구간", "안전 구간"];
+
   const data = {
-    labels: ["Red", "Yellow", "Green"],
+    labels: labelOrder ? ladels : ladels.reverse(),
     datasets: [
       {
         label: "# of Votes",
         data: gaugeLabelData,
-        backgroundColor: gaugeLabelColorOrder,
+        backgroundColor: labelOrder
+          ? Object.values(gaugeColor)
+          : Object.values(gaugeColor).reverse(),
         needleValue: targetBankInfo[indicatorName],
         borderColor: "white",
         borderWidth: 2,
@@ -32,14 +42,23 @@ function GaugeNeedle({
 
   const options = {
     plugins: {
-      legend: { display: false },
+      legend: { display: true },
       tooltip: {
         yAlign: "bottom",
         displayColors: false,
         callbacks: {
-          label: function (tooltipItem, dada, value) {
-            const tracker = tooltipItem.dataset.needleValue;
-            return `Tracker Score: ${tracker} %`;
+          label: function (tooltipItem, data, value) {
+            const labelData = tooltipItem.dataset.data;
+            return (
+              "구간 기준: " +
+              labelData.reduce(
+                (acc, curr) => [
+                  acc[0] + `${acc[1] + curr}${indicatorUnit} `,
+                  acc[1] + curr,
+                ],
+                ["", 0]
+              )[0]
+            );
           },
         },
       },
