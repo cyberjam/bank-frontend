@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import BankInfo from "./BankInfo";
 import fetchBankData from "./api/fetchBankData";
 import BankSearchList from "./BankSearchList";
-import { createFuzzyMatcher } from "./utils/fuzzyMatcher";
 
 function Home() {
   const [bankInfos, setBankInfos] = useState([]);
