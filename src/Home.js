@@ -14,16 +14,14 @@ function Home() {
 
   const handleSearchBank = (event) => {
     event.preventDefault();
-    const target = bankInfos.filter(
-      (bankInfo) => bankInfo["지점명"] === targetBank
-    )[0];
-    setTargetBankInfo(target);
+    setTargetBankInfo(
+      bankInfos.find((bankInfo) => bankInfo["지점명"] === targetBank)
+    );
   };
 
   useEffect(() => {
     const fetchBankInfos = async () => {
-      const data = await fetchBankData();
-      setBankInfos(data);
+      setBankInfos(await fetchBankData());
     };
     fetchBankInfos();
   }, []);
