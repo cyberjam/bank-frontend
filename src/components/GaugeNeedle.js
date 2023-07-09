@@ -44,21 +44,24 @@ function GaugeNeedle({
       },
     },
   });
-  let gaugeNeedle = {
+
+  const gaugeNeedle = {
     id: "gaugeNeedle",
-    beforeDatasetDraw: (chart, args, pluginOptions) => {
+    afterDatasetsDraw: (chart, args, pluginOptions) => {
       const {
         ctx,
         config,
         chartArea: { top, bottom, left, right, width, height },
       } = chart;
       ctx.save();
-      const needleValue = bankInfo[indicatorName];
-
-      const dataTotal = gaugeLabelData.reduce((a, b) => a + b, 0);
-      const angleOrigin = Math.PI + (1 / dataTotal) * needleValue * Math.PI;
-      const angleMax = Math.PI + (1 / dataTotal) * dataTotal * Math.PI;
-      const angle = angleOrigin > angleMax ? angleMax : angleOrigin;
+      const getAngle = (dataTotal, needleValue) => {
+        const angleOrigin = Math.PI + (1 / dataTotal) * needleValue * Math.PI;
+        const angleMax = Math.PI + (1 / dataTotal) * dataTotal * Math.PI;
+        return angleOrigin > angleMax ? angleMax : angleOrigin;
+      };
+      const needleValue = data.datasets[0].needleValue;
+      const dataTotal = data.datasets[0].data.reduce((a, b) => a + b, 0);
+      const angle = getAngle(dataTotal, needleValue);
       const cx = width / 2;
       const cy = chart._metasets[0].data[0].y;
 
@@ -88,10 +91,8 @@ function GaugeNeedle({
         cx,
         cy + 50
       );
-      // ctx.fillText(indicatorName, cx, cy + 200);
       ctx.textAlign = "center";
       ctx.restore();
-      chart.update();
     },
   };
 
