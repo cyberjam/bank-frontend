@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import BankInfo from "./components/BankInfo";
 import fetchBankData from "./api/fetchBankData";
 import BankSearchList from "./components/BankSearchList";
+import BankInput from "./components/BankInput";
 
 function Home() {
   const [bankInfos, setBankInfos] = useState([]);
   const [targetBank, setTargetBank] = useState("");
   const [targetBankInfo, setTargetBankInfo] = useState();
-
-  const handleInputBank = (event) => {
-    setTargetBank(event.target.value);
-  };
 
   const handleSearchBank = (event) => {
     event.preventDefault();
@@ -28,16 +25,12 @@ function Home() {
 
   return (
     <div>
-      <form onSubmit={handleSearchBank}>
-        <input
-          value={targetBank}
-          onChange={handleInputBank}
-          disabled={bankInfos.length ? "" : "disabled"}
-          placeholder={bankInfos.length ? "" : "실시간 데이터 로딩중 :)"}
-        ></input>
-
-        <button type="submit">검색</button>
-      </form>
+      <BankInput
+        bankInfos={bankInfos}
+        targetBank={targetBank}
+        setTargetBank={setTargetBank}
+        handleSearchBank={handleSearchBank}
+      ></BankInput>
       {targetBankInfo ? (
         <BankInfo bankInfo={targetBankInfo}></BankInfo>
       ) : (
