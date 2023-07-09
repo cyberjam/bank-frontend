@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import BankInfo from "./components/BankInfo";
 import fetchBankData from "./api/fetchBankData";
-import BankSearchList from "./components/BankSearchList";
 import BankInput from "./components/BankInput";
+import BankSearchList from "./components/BankSearchList";
+import BankInfo from "./components/BankInfo";
 
 function Home() {
   const [bankInfos, setBankInfos] = useState([]);
@@ -32,7 +32,7 @@ function Home() {
         handleSearchBank={handleSearchBank}
       ></BankInput>
       {targetBankInfo ? (
-        <BankInfo bankInfo={targetBankInfo}></BankInfo>
+        <BankInfo targetBankInfo={targetBankInfo}></BankInfo>
       ) : (
         <BankSearchList
           bankInfos={bankInfos}
