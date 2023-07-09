@@ -42,7 +42,7 @@ function GaugeNeedle({
 
   const options = {
     plugins: {
-      legend: { display: true },
+      legend: { display: true, position: "bottom", onClick: null },
       tooltip: {
         yAlign: "bottom",
         displayColors: false,
