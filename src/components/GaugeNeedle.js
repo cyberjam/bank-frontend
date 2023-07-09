@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 function GaugeNeedle({
   indicatorName,
-  bankInfo,
+  targetBankInfo,
   indicatorUnit,
   gaugeLabelColorOrder,
   gaugeLabelData,
@@ -19,7 +19,7 @@ function GaugeNeedle({
         label: "# of Votes",
         data: gaugeLabelData,
         backgroundColor: gaugeLabelColorOrder,
-        needleValue: bankInfo[indicatorName],
+        needleValue: targetBankInfo[indicatorName],
         borderColor: "white",
         borderWidth: 2,
         cutout: "95%",

@@ -15,35 +15,35 @@ function BankInfo({ targetBankInfo }) {
       {/* <div>{bankInfo["위험가중자산대비 자기자본비율"]}</div> */}
       <GaugeNeedle
         indicatorName={"위험가중자산대비 자기자본비율"}
-        bankInfo={targetBankInfo}
+        targetBankInfo={targetBankInfo}
         indicatorUnit={"%"}
         gaugeLabelColorOrder={gaugeLabelColorOrder}
         gaugeLabelData={[4, 4, 8]}
       ></GaugeNeedle>
       <GaugeNeedle
         indicatorName={"순고정이하 여신비율"}
-        bankInfo={targetBankInfo}
+        targetBankInfo={targetBankInfo}
         indicatorUnit={"%"}
         gaugeLabelColorOrder={[...gaugeLabelColorOrder].reverse()}
         gaugeLabelData={[8, 4, 4]}
       ></GaugeNeedle>
       <GaugeNeedle
         indicatorName={"유동성 비율"}
-        bankInfo={targetBankInfo}
+        targetBankInfo={targetBankInfo}
         indicatorUnit={"%"}
         gaugeLabelColorOrder={gaugeLabelColorOrder}
         gaugeLabelData={[25, 25, 50]}
       ></GaugeNeedle>
       <GaugeNeedle
         indicatorName={"총자산 순이익률"}
-        bankInfo={targetBankInfo}
+        targetBankInfo={targetBankInfo}
         indicatorUnit={"%"}
         gaugeLabelColorOrder={gaugeLabelColorOrder}
         gaugeLabelData={[0.5, 0.5, 1]}
       ></GaugeNeedle>
       <GaugeNeedle
         indicatorName={"경영실태 평가"}
-        bankInfo={targetBankInfo}
+        targetBankInfo={targetBankInfo}
         indicatorUnit={"등급"}
         gaugeLabelColorOrder={[...gaugeLabelColorOrder].reverse()}
         gaugeLabelData={[2.5, 1.25, 1.25]}
