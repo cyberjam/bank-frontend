@@ -76,9 +76,18 @@ function GaugeNeedle({
       ctx.save();
       const getAngle = (dataTotal, needleValue) => {
         const angleOrigin = Math.PI + (1 / dataTotal) * needleValue * Math.PI;
-        const angleMax = Math.PI + (1 / dataTotal) * dataTotal * Math.PI;
-        return angleOrigin > angleMax ? angleMax : angleOrigin;
+        const angleMax = 2 * Math.PI;
+        const angleMin = Math.PI;
+        if (angleOrigin > angleMax) {
+          return angleMax;
+        }
+        if (angleOrigin < angleMin) {
+          return angleMin;
+        } else {
+          return angleOrigin;
+        }
       };
+
       const needleValue = data.datasets[0].needleValue;
       const dataTotal = data.datasets[0].data.reduce((a, b) => a + b, 0);
       const angle = getAngle(dataTotal, needleValue);
