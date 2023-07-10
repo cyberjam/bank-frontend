@@ -24,7 +24,7 @@ function BankInfo({ targetBankInfo }) {
         targetBankInfo={targetBankInfo}
         indicatorUnit={"%"}
         labelOrder={false}
-        gaugeLabelData={[2, 5, 10]}
+        gaugeLabelData={[2, 4, 6]}
       ></GaugeNeedle>
       <GaugeNeedle
         indicatorName={"유동성 비율"}
