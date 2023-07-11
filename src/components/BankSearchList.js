@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createFuzzyMatcher } from "../utils/fuzzyMatcher";
 
-function BankSearchList({
-  bankInfos,
-  inputBank,
-  setInputBank,
-  setTargetBankInfo,
-}) {
+function BankSearchList({ bankInfos, inputBank, setTargetBankInfo }) {
   const [searchBankInfos, setSearchBankInfos] = useState([]);
   const handleSelectBank = (bankCode) => {
     setTargetBankInfo(
