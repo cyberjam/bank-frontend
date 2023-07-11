@@ -9,13 +9,6 @@ function Home() {
   const [targetBank, setTargetBank] = useState("");
   const [targetBankInfo, setTargetBankInfo] = useState();
 
-  const handleSearchBank = (event) => {
-    event.preventDefault();
-    setTargetBankInfo(
-      bankInfos.find((bankInfo) => bankInfo["지점명"] === targetBank)
-    );
-  };
-
   useEffect(() => {
     const fetchBankInfos = async () => {
       setBankInfos(await fetchBankData());
@@ -33,7 +26,6 @@ function Home() {
         bankInfos={bankInfos}
         targetBank={targetBank}
         setTargetBank={setTargetBank}
-        handleSearchBank={handleSearchBank}
       ></BankInput>
       {targetBankInfo ? (
         <BankInfo targetBankInfo={targetBankInfo}></BankInfo>
@@ -41,8 +33,7 @@ function Home() {
         <BankSearchList
           bankInfos={bankInfos}
           targetBank={targetBank}
-          setTargetBank={setTargetBank}
-          handleSearchBank={handleSearchBank}
+          setTargetBankInfo={setTargetBankInfo}
         ></BankSearchList>
       )}
     </div>
