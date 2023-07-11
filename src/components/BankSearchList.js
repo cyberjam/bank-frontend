@@ -3,8 +3,8 @@ import { createFuzzyMatcher } from "../utils/fuzzyMatcher";
 
 function BankSearchList({
   bankInfos,
-  targetBank,
-  setTargetBank,
+  inputBank,
+  setInputBank,
   setTargetBankInfo,
 }) {
   const [searchBankInfos, setSearchBankInfos] = useState([]);
@@ -19,12 +19,12 @@ function BankSearchList({
       setSearchBankInfos(
         bankInfos.filter((bankInfo) =>
           (bankInfo["지점명"] + bankInfo["행정구역"]).match(
-            createFuzzyMatcher(targetBank)
+            createFuzzyMatcher(inputBank)
           )
         )
       );
     }
-  }, [targetBank]);
+  }, [inputBank]);
 
   return searchBankInfos.map((item, index) => (
     <ul

@@ -6,7 +6,7 @@ import BankInfo from "./components/BankInfo";
 
 function Home() {
   const [bankInfos, setBankInfos] = useState([]);
-  const [targetBank, setTargetBank] = useState("");
+  const [inputBank, setInputBank] = useState("");
   const [targetBankInfo, setTargetBankInfo] = useState();
 
   useEffect(() => {
@@ -18,21 +18,21 @@ function Home() {
 
   useEffect(() => {
     setTargetBankInfo();
-  }, [targetBank]);
+  }, [inputBank]);
 
   return (
     <div>
       <BankInput
         bankInfos={bankInfos}
-        targetBank={targetBank}
-        setTargetBank={setTargetBank}
+        inputBank={inputBank}
+        setInputBank={setInputBank}
       ></BankInput>
       {targetBankInfo ? (
         <BankInfo targetBankInfo={targetBankInfo}></BankInfo>
       ) : (
         <BankSearchList
           bankInfos={bankInfos}
-          targetBank={targetBank}
+          inputBank={inputBank}
           setTargetBankInfo={setTargetBankInfo}
         ></BankSearchList>
       )}
